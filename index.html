@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DSA Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>DSA Visualizer</h1>
+
+    <div class="tabs">
+        <button class="tab-button active" data-target="stack-section">Stack</button>
+        <button class="tab-button" data-target="queue-section">Queue</button>
+        <button class="tab-button" data-target="list-section">Linked List</button>
+        <button class="tab-button" data-target="tree-section">Tree</button>
+    </div>
+
+    <!-- STACK -->
+    <section id="stack-section" class="visual-section active">
+        <h2>Stack (LIFO)</h2>
+        <div class="controls">
+            <input type="text" id="stack-input" placeholder="Enter value">
+            <button id="stack-push">Push</button>
+            <button id="stack-pop">Pop</button>
+            <button id="stack-reset">Reset</button>
+        </div>
+        <div class="visual-container">
+            <div id="stack-container" class="stack-container"></div>
+        </div>
+    </section>
+
+    <!-- QUEUE -->
+    <section id="queue-section" class="visual-section">
+        <h2>Queue (FIFO)</h2>
+        <div class="controls">
+            <input type="text" id="queue-input" placeholder="Enter value">
+            <button id="queue-enq">Enqueue</button>
+            <button id="queue-deq">Dequeue</button>
+            <button id="queue-reset">Reset</button>
+        </div>
+        <div class="visual-container">
+            <div id="queue-container" class="queue-container"></div>
+        </div>
+    </section>
+
+    <!-- LINKED LIST -->
+    <section id="list-section" class="visual-section">
+        <h2>Singly Linked List</h2>
+        <div class="controls">
+            <input type="text" id="list-input" placeholder="Enter value">
+            <button id="list-insert-head">Insert Front</button>
+            <button id="list-insert-tail">Insert End</button>
+            <button id="list-delete-head">Delete Front</button>
+            <button id="list-reset">Reset</button>
+        </div>
+        <div class="visual-container">
+            <div id="list-container" class="list-container"></div>
+        </div>
+    </section>
+
+    <!-- TREE (placeholder for now) -->
+    <section id="tree-section" class="visual-section">
+        <h2>Tree</h2>
+        <p>Coming soon…</p>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
