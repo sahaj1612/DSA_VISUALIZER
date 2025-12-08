@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stack Visualizer</title>
+
+    <link rel="stylesheet" href="/css/stack.css">
+</head>
+<body>
+    <div class="app-shell">
+        <header class="app-header">
+            <h1>Stack Visualizer</h1>
+            <p class="subtitle">Interactive LIFO Execution • Real-Time Stack Operations</p>
+        </header>
+
+        <main class="app-main">
+            <section class="card glass">
+                <div class="card-header">
+                    <h2>Stack (LIFO)</h2>
+                    <span class="badge">Top at the ↑</span>
+                </div>
+
+                <div class="controls-row">
+                    <div class="input-group">
+                        <label for="stack-value">Value</label>
+                        <input id="stack-value" type="text" placeholder="Enter value to push">
+                    </div>
+                    <div class="btn-group">
+                        <button id="btn-push" class="btn primary">Push</button>
+                        <button id="btn-pop" class="btn danger">Pop</button>
+                        <button id="btn-reset" class="btn subtle">Reset</button>
+                    </div>
+                </div>
+
+                <div class="status-row" id="stack-status">
+                    Stack is empty. Push some values!
+                </div>
+
+                <div class="stack-area">
+                    <div class="stack-label">
+                        <span>TOP</span>
+                        <div class="top-arrow"></div>
+                    </div>
+                    <div id="stack-visual" class="stack-visual"></div>
+                    <div class="stack-base">BASE</div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <span>Tip: The last pushed element is always popped first.</span>
+        </footer>
+    </div>
+
+    <script src="/js/stack.js"></script>
+</body>
+</html>

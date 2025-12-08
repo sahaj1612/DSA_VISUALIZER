@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Queue Visualizer</title>
+    <link rel="stylesheet" href="/css/queue.css">
+</head>
+<body>
+    <div class="app-shell">
+        <header class="app-header">
+            <h1>Queue Visualizer</h1>
+            <p class="subtitle">Visualize Every Queue Type with Beautiful Transitions</p>
+        </header>
+
+        <main class="app-main">
+            <section class="card glass">
+                <div class="card-header">
+                    <h2>Choose Queue Type</h2>
+                </div>
+
+                <div class="queue-type-toggle">
+                    <button class="queue-type-btn active" data-type="linear">
+                        Linear Queue
+                    </button>
+                    <button class="queue-type-btn" data-type="circular">
+                        Circular Queue
+                    </button>
+                    <button class="queue-type-btn" data-type="priority">
+                        Priority Queue
+                    </button>
+                    <button class="queue-type-btn" data-type="deque">
+                        Deque
+                    </button>
+                </div>
+
+                <div class="hint-text" id="queue-hint">
+                    Linear Queue: elements leave only from the front, no reuse of freed slots.
+                </div>
+
+                <div class="controls-row">
+                    <div class="input-group">
+                        <label for="queue-value">Value</label>
+                        <input id="queue-value" type="text" placeholder="Enter value to enqueue">
+                    </div>
+
+                    <div class="btn-group" id="btn-group-main">
+                        <button class="btn primary" id="btn-enqueue">Enqueue</button>
+                        <button class="btn danger" id="btn-dequeue">Dequeue</button>
+                        <button class="btn subtle" id="btn-reset">Reset</button>
+                    </div>
+
+                    <div class="btn-group deque-only" id="btn-group-deque">
+                        <button class="btn primary" id="btn-enq-front">Enqueue Front</button>
+                        <button class="btn primary" id="btn-enq-rear">Enqueue Rear</button>
+                        <button class="btn danger" id="btn-deq-front">Dequeue Front</button>
+                        <button class="btn danger" id="btn-deq-rear">Dequeue Rear</button>
+                    </div>
+                </div>
+
+                <div class="status-row" id="queue-status">
+                    Linear Queue selected. Currently empty.
+                </div>
+
+                <!-- Visual zone -->
+                <div class="visual-wrapper">
+                    <!-- Linear / Priority / Deque -->
+                    <div id="queue-visual-generic" class="queue-visual queue-visual--generic">
+                        <!-- items rendered here -->
+                    </div>
+
+                    <!-- Circular -->
+                    <div id="queue-visual-circular" class="queue-visual queue-visual--circular">
+                        <div class="circular-track" id="circular-track">
+                            <!-- cells rendered here -->
+                        </div>
+                        <div class="circular-legend">
+                            <span class="legend front-dot">Front</span>
+                            <span class="legend rear-dot">Rear</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <span>Tip: Change queue type to see how behavior and visualization differ.</span>
+        </footer>
+    </div>
+
+    <script src="/js/queue.js"></script>
+</body>
+</html>
