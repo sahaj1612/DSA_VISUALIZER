@@ -1,0 +1,224 @@
+/* base variables and entire look copied from your stack.css to preserve UI/UX */
+:root {
+  --bg-main: linear-gradient(135deg, #f3f6ff, #e0f4ff);
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --accent: #4f46e5;
+  --accent-soft: #e0e7ff;
+  --accent-strong: #4338ca;
+  --danger: #ef4444;
+  --danger-soft: #fee2e2;
+  --text-main: #111827;
+  --text-soft: #6b7280;
+  --border-soft: #e5e7eb;
+  --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.12);
+  --radius-xl: 20px;
+  --transition-fast: 0.18s ease-out;
+  --transition-normal: 0.25s ease;
+  --node-bg: #fef3c7;
+  --node-text: #92400e;
+}
+
+/* RESET + LAYOUT */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--bg-main);
+  color: var(--text-main);
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  padding: 24px 16px;
+}
+
+.app-shell {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* HEADER */
+.app-header {
+  text-align: center;
+}
+.app-header h1 {
+  font-size: 2rem;
+  margin-bottom: 4px;
+}
+.subtitle {
+  font-size: 0.95rem;
+  color: var(--text-soft);
+}
+
+/* CARD */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius-xl);
+  padding: 20px 22px 22px;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+/* CARD HEADER */
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.badge {
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-weight: 600;
+}
+
+/* INPUT ROW */
+.controls-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+  margin-bottom: 14px;
+}
+
+.input-group {
+  flex: 1;
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.input-group input {
+  padding: 9px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  background: #f9fafb;
+}
+
+/* FIXED SWAP INPUT WIDTH */
+.input-group.swap-group > div {
+  display: flex;
+  gap: 8px;
+}
+
+.input-group.swap-group input {
+  width: 70px !important;      /* FIXED WIDTH */
+  min-width: 70px !important;  /* no stretching */
+  max-width: 70px !important;
+  text-align: center;
+}
+
+/* BUTTONS */
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.btn {
+  border: none;
+  border-radius: 999px;
+  padding: 9px 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background: #4f46e5;
+  color: white;
+}
+
+.btn.danger {
+  background: #ef4444;
+  color: white;
+}
+
+.btn.subtle {
+  background: #f3f4f6;
+}
+
+/* STATUS */
+.status-row {
+  margin-bottom: 14px;
+  font-size: 0.85rem;
+  color: var(--text-soft);
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px dashed #e5e7eb;
+}
+
+/* VISUAL AREA */
+.ll-area {
+  margin-top: 10px;
+  overflow-x: auto;
+}
+
+.ll-visual {
+  min-height: 220px;
+  padding: 14px;
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  border: 2px dashed rgba(148, 163, 184, 0.7);
+  border-radius: 16px;
+}
+
+/* NODE STYLE */
+.ll-node {
+  min-width: 70px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #fff7ed, var(--node-bg));
+  font-weight: 800;
+}
+
+/* ARROWS */
+.ll-arrow {
+  width: 42px;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* small helpers */
+.small-muted {
+  font-size: 0.82rem;
+  color: var(--text-soft);
+  margin-left: 8px;
+}
+
+/* responsiveness */
+@media (max-width: 880px) {
+  .ll-visual {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .ll-node {
+    min-width: 60px;
+    padding: 8px 10px;
+  }
+}
+
+/* animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

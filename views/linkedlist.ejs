@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Linked List Visualizer</title>
+
+    <!-- keep path consistent with your project -->
+    <link rel="stylesheet" href="/css/linkedlist.css" />
+</head>
+<body>
+    <div class="app-shell">
+        <header class="app-header">
+            <h1>Linked List Visualizer</h1>
+            <p class="subtitle">Singly / Circular / Doubly • Interactive Node Operations</p>
+        </header>
+
+        <main class="app-main">
+            <section class="card glass">
+                <div class="card-header">
+                    <h2 id="ll-title">Singly Linked List</h2>
+                    <span class="badge" id="ll-badge">Type: Singly</span>
+                </div>
+
+                <div class="controls-row">
+                    <div class="input-group">
+                        <label for="ll-value">Value</label>
+                        <input id="ll-value" type="text" placeholder="Enter node value" />
+                    </div>
+
+                    <div class="input-group">
+                        <label for="ll-pos">Position (1-based)</label>
+                        <input id="ll-pos" type="number" min="1" placeholder="pos for insert/delete" />
+                    </div>
+
+                    <div class="input-group">
+                        <label for="ll-swap-a">Swap positions (a, b)</label>
+                        <div style="display:flex; gap:8px;">
+                            <input id="ll-swap-a" type="number" min="1" placeholder="a" />
+                            <input id="ll-swap-b" type="number" min="1" placeholder="b" />
+                        </div>
+                    </div>
+
+                    <div class="btn-group">
+                        <select id="ll-type" class="btn subtle" style="padding:9px 10px;">
+                            <option value="singly">Singly</option>
+                            <option value="circular-singly">Circular Singly</option>
+                            <option value="doubly">Doubly</option>
+                            <option value="circular-doubly">Circular Doubly</option>
+                        </select>
+
+                        <button id="btn-ins-front" class="btn primary">Insert Front</button>
+                        <button id="btn-ins-rear" class="btn primary">Insert Rear</button>
+                        <button id="btn-ins-pos" class="btn primary">Insert @Pos</button>
+
+                        <button id="btn-del-front" class="btn danger">Delete Front</button>
+                        <button id="btn-del-rear" class="btn danger">Delete Rear</button>
+                        <button id="btn-del-pos" class="btn danger">Delete @Pos</button>
+
+                        <button id="btn-reverse" class="btn subtle">Reverse</button>
+                        <button id="btn-swap" class="btn subtle">Swap Nodes</button>
+
+                        <button id="btn-sort-asc" class="btn primary">Sort Asc</button>
+                        <button id="btn-sort-desc" class="btn primary">Sort Desc</button>
+
+                        <button id="btn-reset" class="btn subtle">Reset</button>
+                    </div>
+                </div>
+
+                <div class="status-row" id="ll-status">
+                    Linked list is empty. Choose a type and add nodes.
+                </div>
+
+                <div class="ll-area">
+                    <div id="ll-visual" class="ll-visual"></div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <span>Tip: Positions are 1-based. Circular lists will show arrows looping back.</span>
+        </footer>
+    </div>
+
+    <script src="/js/linkedlist.js"></script>
+</body>
+</html>

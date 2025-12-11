@@ -21,6 +21,14 @@ app.get("/queue", (req, res) => {
   res.render("queue");
 });
 
+app.get("/linked_list", (req, res) => {
+  res.render("linkedlist");
+});
+
+app.get("/tree", (req, res) => {
+  res.render("tree");
+});
+
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
