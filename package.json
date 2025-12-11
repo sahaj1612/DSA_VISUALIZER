@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "route.js",
   "scripts": {
+    "start" : "node route.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
