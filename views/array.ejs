@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Array Visualizer</title>
+
+    <link rel="stylesheet" href="/css/stack.css"> <!-- reuse global theme -->
+    <link rel="stylesheet" href="/css/array.css"> <!-- array-specific styles -->
+</head>
+
+<body>
+
+    <div class="app-shell">
+
+        <header class="app-header">
+            <h1>Array Visualizer</h1>
+            <p class="subtitle">Insert & Delete in 1D and 2D Arrays</p>
+        </header>
+
+        <main class="app-main">
+
+            <section class="card glass">
+
+                <div class="card-header">
+                    <h2>Array Controls</h2>
+                    <span class="badge">1D / 2D</span>
+                </div>
+
+                <!-- Mode Switch -->
+                <div class="controls-row">
+                    <div class="btn-group">
+                        <button id="btn-mode-1d" class="btn primary">1D Array</button>
+                        <button id="btn-mode-2d" class="btn subtle">2D Array</button>
+                    </div>
+                </div>
+
+                <!-- 1D Controls -->
+                <div id="controls-1d">
+                    <div class="controls-row">
+                        <div class="input-group">
+                            <label>Index</label>
+                            <input id="index-1d" type="number" min="0" placeholder="Index">
+                        </div>
+
+                        <div class="input-group">
+                            <label>Value</label>
+                            <input id="value-1d" type="text" placeholder="Value">
+                        </div>
+
+                        <div class="btn-group">
+                            <button id="btn-insert-1d" class="btn primary">Insert</button>
+                            <button id="btn-delete-1d" class="btn danger">Delete</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2D Controls -->
+                <div id="controls-2d" style="display: none;">
+                    <div class="controls-row">
+
+                        <div class="input-group">
+                            <label>Row</label>
+                            <input id="row-2d" type="number" min="0" placeholder="Row">
+                        </div>
+
+                        <div class="input-group">
+                            <label>Column</label>
+                            <input id="col-2d" type="number" min="0" placeholder="Column">
+                        </div>
+
+                        <div class="input-group">
+                            <label>Value</label>
+                            <input id="value-2d" type="text" placeholder="Value">
+                        </div>
+
+                        <div class="btn-group">
+                            <button id="btn-insert-2d" class="btn primary">Insert</button>
+                            <button id="btn-delete-2d" class="btn danger">Delete</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status -->
+                <div class="status-row" id="array-status">
+                    Array is empty. Insert some values!
+                </div>
+
+                <!-- Visual Area -->
+                <div id="array-visual" class="array-visual"></div>
+
+            </section>
+
+        </main>
+
+        <footer class="app-footer">
+            <span>Tip: Use 1D for linear arrays and 2D for grids.</span>
+        </footer>
+
+    </div>
+
+    <script src="/js/array.js"></script>
+
+</body>
+
+</html>

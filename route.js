@@ -13,6 +13,14 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 
+app.get("/array", (req, res) => {
+  res.render("array")
+});
+
+app.get("/string", (req, res) => {
+  res.render("string")
+});
+
 app.get("/stack", (req, res) => {
   res.render("stack");
 });

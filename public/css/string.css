@@ -1,0 +1,95 @@
+/* Reuse the same theme variables from stack.css */
+:root {
+    --bg-main: linear-gradient(135deg, #f3f6ff, #e0f4ff);
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --accent: #4f46e5;
+    --accent-soft: #e0e7ff;
+    --accent-strong: #4338ca;
+    --danger: #ef4444;
+    --danger-soft: #fee2e2;
+    --text-main: #111827;
+    --text-soft: #6b7280;
+    --border-soft: #e5e7eb;
+    --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.12);
+    --radius-xl: 20px;
+
+    /* String colors */
+    --string-item-bg: radial-gradient(circle at 0 0, #ffe4e6, #f87171);
+    --string-item-border: rgba(239, 68, 68, 0.4);
+    --string-item-text: #7f1d1d;
+
+    --string-2d-bg: radial-gradient(circle at top, #fff7ed, #ffedd5);
+}
+
+/* MAIN VISUAL AREA ---------------------------------------------------------- */
+
+.array-visual {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    min-height: 160px;
+
+    border-radius: 16px;
+    border: 2px dashed rgba(148, 163, 184, 0.7);
+    background: radial-gradient(circle at top, #eef2ff, #f9fafb);
+    transition: 0.25s ease;
+}
+
+/* 1D ITEMS ---------------------------------------------------------- */
+
+.array-item {
+    padding: 10px 14px;
+    min-width: 55px;
+
+    background: var(--string-item-bg);
+    border: 1px solid var(--string-item-border);
+    color: var(--string-item-text);
+    font-weight: 700;
+    text-align: center;
+
+    border-radius: 14px;
+    box-shadow: 0 5px 15px rgba(248, 113, 113, 0.4);
+
+    transform: translateY(12px) scale(0.95);
+    opacity: 0;
+    animation: array-enter 0.22s ease forwards;
+}
+
+.array-item.highlight {
+    background: radial-gradient(circle at 0 0, #fde68a, #fbbf24) !important;
+    border-color: #f59e0b !important;
+    color: #78350f !important;
+}
+
+/* ENTER ANIMATION */
+@keyframes array-enter {
+    0% {
+        opacity: 0;
+        transform: translateY(18px) scale(0.88);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* 2D GRID ---------------------------------------------------------- */
+
+.array-grid {
+    display: grid;
+    padding: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: 10px;
+
+    border-radius: 16px;
+    border: 2px dashed rgba(148, 163, 184, 0.7);
+    background: var(--string-2d-bg);
+}
+
+.array-grid .array-item {
+    min-width: unset;
+    padding: 12px 10px;
+}
