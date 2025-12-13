@@ -22,7 +22,6 @@ body {
     color: #0f172a;
 }
 
-/* ===== Decorative Background Grid ===== */
 .bg-grid {
     position: fixed;
     inset: 0;
@@ -34,7 +33,6 @@ body {
     z-index: -2;
 }
 
-/* ===== Floating Shapes ===== */
 .shape {
     position: absolute;
     border-radius: 50%;
@@ -53,7 +51,6 @@ body {
     to { transform: translateY(-50px); }
 }
 
-/* ===== Side Decorative Borders ===== */
 .side-border {
     position: fixed;
     top: 12%;
@@ -90,7 +87,6 @@ body {
     }
 }
 
-/* ===== Top Bar ===== */
 .top-bar-ui {
     position: fixed;
     top: 0;
@@ -122,13 +118,11 @@ body {
     box-shadow: 0 25px 50px rgba(0,0,0,0.25);
 }
 
-/* ===== Animation ===== */
 @keyframes fadeUp {
     from { opacity: 0; transform: translateY(40px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* ===== Landing Page ===== */
 .landing {
     min-height: 100vh;
     display: flex;
@@ -158,7 +152,6 @@ body {
     margin: 1.6rem 0 3rem;
 }
 
-/* ===== Start Button ===== */
 .start-btn {
     padding: 1rem 3.2rem;
     border-radius: 999px;
@@ -177,7 +170,6 @@ body {
     box-shadow: 0 25px 50px rgba(0,0,0,0.25);
 }
 
-/* ===== Selection Page ===== */
 .selection {
     display: none;
     min-height: 100vh;
@@ -191,7 +183,6 @@ body {
     margin-bottom: 3rem;
 }
 
-/* ===== Grid ===== */
 .grid {
     max-width: 1100px;
     margin: auto;
@@ -200,7 +191,6 @@ body {
     gap: 2.5rem;
 }
 
-/* ===== Cards ===== */
 .ds-card {
     background: rgba(255,255,255,0.78);
     backdrop-filter: blur(12px);
@@ -233,7 +223,6 @@ body {
 <div class="shape two"></div>
 <div class="shape three"></div>
 
-<!-- Decorative Borders -->
 <div class="side-border left-border"></div>
 <div class="side-border right-border"></div>
 
@@ -256,12 +245,12 @@ body {
     <h2>Select a Data Structure</h2>
 
     <div class="grid">
-        <div class="ds-card">Array</div>
-        <div class="ds-card">String</div>
-        <div class="ds-card">Stack</div>
-        <div class="ds-card">Queue</div>
-        <div class="ds-card">Linked List</div>
-        <div class="ds-card">Tree</div>
+        <form action="/array" method="POST"><div class="ds-card" >Array</div></form>
+        <form action="/string" method="POST"><div class="ds-card" >String</div></form>
+        <form action="/stack" method="POST"><div class="ds-card" >Stack</div></form>
+        <form action="/queue" method="POST"><div class="ds-card" >Queue</div></form>
+        <form action="/linked_list" method="POST"><div class="ds-card" >Linked List</div></form>
+        <form action="/tree" method="POST"><div class="ds-card" >Tree</div></form>
     </div>
 </section>
 
@@ -282,6 +271,14 @@ backBtn.onclick = () => {
     landing.style.display = "flex";
     backBtn.style.display = "none";
 };
+
+
+document.querySelectorAll(".ds-card").forEach(card => {
+    card.addEventListener("click", () => {
+        card.closest("form").submit();
+    });
+});
+
 </script>
 
 </body>
