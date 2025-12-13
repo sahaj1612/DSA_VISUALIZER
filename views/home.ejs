@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DSA VISUALIZER</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    background: radial-gradient(circle at top left, #7f7fd5, #86a8e7, #91eae4);
+    overflow-x: hidden;
+    color: #0f172a;
+}
+
+/* ===== Decorative Background Grid ===== */
+.bg-grid {
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: -2;
+}
+
+/* ===== Floating Shapes ===== */
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(50px);
+    opacity: 0.45;
+    animation: float 14s infinite alternate ease-in-out;
+    z-index: -1;
+}
+
+.shape.one { width: 320px; height: 320px; background: white; top: -120px; left: -120px; }
+.shape.two { width: 260px; height: 260px; background: #ffd6e8; bottom: -120px; right: -120px; }
+.shape.three { width: 200px; height: 200px; background: #dbeafe; top: 20%; right: 15%; }
+
+@keyframes float {
+    from { transform: translateY(0); }
+    to { transform: translateY(-50px); }
+}
+
+/* ===== Side Decorative Borders ===== */
+.side-border {
+    position: fixed;
+    top: 12%;
+    bottom: 12%;
+    width: 6px;
+    border-radius: 999px;
+    background: linear-gradient(
+        180deg,
+        transparent,
+        rgba(255,255,255,0.95),
+        transparent
+    );
+    opacity: 0.35;
+    animation: borderGlow 4s ease-in-out infinite alternate;
+    z-index: 1;
+}
+
+.left-border {
+    left: 24px;
+}
+
+.right-border {
+    right: 24px;
+}
+
+@keyframes borderGlow {
+    from {
+        opacity: 0.25;
+        transform: scaleY(0.94);
+    }
+    to {
+        opacity: 0.55;
+        transform: scaleY(1);
+    }
+}
+
+/* ===== Top Bar ===== */
+.top-bar-ui {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    font-weight: 600;
+    z-index: 10;
+}
+
+.back-btn {
+    background: rgba(255,255,255,0.85);
+    border: none;
+    padding: 0.4rem 1.2rem;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+    display: none;
+}
+
+.back-btn:hover {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+}
+
+/* ===== Animation ===== */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Landing Page ===== */
+.landing {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 5rem 2rem;
+    animation: fadeUp 0.8s ease;
+}
+
+.badge {
+    background: rgba(255,255,255,0.75);
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    margin-bottom: 1.2rem;
+}
+
+.landing h1 {
+    font-size: 3.8rem;
+}
+
+.landing p {
+    font-size: 1.25rem;
+    max-width: 720px;
+    margin: 1.6rem 0 3rem;
+}
+
+/* ===== Start Button ===== */
+.start-btn {
+    padding: 1rem 3.2rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.35s ease;
+}
+
+.start-btn:hover {
+    background: white;
+    color: #6366f1;
+    transform: translateY(-4px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+}
+
+/* ===== Selection Page ===== */
+.selection {
+    display: none;
+    min-height: 100vh;
+    padding: 6rem 2rem;
+    animation: fadeUp 0.6s ease;
+}
+
+.selection h2 {
+    text-align: center;
+    font-size: 2.4rem;
+    margin-bottom: 3rem;
+}
+
+/* ===== Grid ===== */
+.grid {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+}
+
+/* ===== Cards ===== */
+.ds-card {
+    background: rgba(255,255,255,0.78);
+    backdrop-filter: blur(12px);
+    border-radius: 22px;
+    padding: 3.2rem 1.5rem;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.25rem;
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.ds-card:hover {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    transform: translateY(-8px) scale(1.04);
+    box-shadow: 
+        0 18px 40px rgba(0, 0, 0, 0.22),
+        0 8px 20px rgba(99, 102, 241, 0.25);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="bg-grid"></div>
+
+<div class="shape one"></div>
+<div class="shape two"></div>
+<div class="shape three"></div>
+
+<!-- Decorative Borders -->
+<div class="side-border left-border"></div>
+<div class="side-border right-border"></div>
+
+<div class="top-bar-ui">
+    <span>DSA VISUALIZER</span>
+    <button class="back-btn" id="backBtn">← Back</button>
+</div>
+
+<section class="landing" id="landing">
+    <div class="badge">Interactive Learning Platform</div>
+    <h1>DSA VISUALIZER</h1>
+    <p>
+        Visualize and understand Data Structures and their real-world Applications
+        through intuitive and interactive user experiences.
+    </p>
+    <button class="start-btn" id="startBtn">Start Exploring</button>
+</section>
+
+<section class="selection" id="selection">
+    <h2>Select a Data Structure</h2>
+
+    <div class="grid">
+        <div class="ds-card">Array</div>
+        <div class="ds-card">String</div>
+        <div class="ds-card">Stack</div>
+        <div class="ds-card">Queue</div>
+        <div class="ds-card">Linked List</div>
+        <div class="ds-card">Tree</div>
+    </div>
+</section>
+
+<script>
+const landing = document.getElementById("landing");
+const selection = document.getElementById("selection");
+const startBtn = document.getElementById("startBtn");
+const backBtn = document.getElementById("backBtn");
+
+startBtn.onclick = () => {
+    landing.style.display = "none";
+    selection.style.display = "block";
+    backBtn.style.display = "inline-block";
+};
+
+backBtn.onclick = () => {
+    selection.style.display = "none";
+    landing.style.display = "flex";
+    backBtn.style.display = "none";
+};
+</script>
+
+</body>
+</html>
