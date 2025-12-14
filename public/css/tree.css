@@ -252,7 +252,7 @@ body {
     border-radius: 16px;
     border: 2px dashed rgba(148, 163, 184, 0.7);
     background: radial-gradient(circle at top, #eef2ff, #f9fafb);
-    min-height: 320px;
+    min-height: 200px;
     overflow: auto;
     position: relative; /* important for svg overlay */
 }
