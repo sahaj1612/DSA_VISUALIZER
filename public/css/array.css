@@ -40,27 +40,38 @@
 /* 1D ITEMS ---------------------------------------------------------- */
 
 .array-item {
-    padding: 10px 14px;
-    min-width: 55px;
+    width: 64px;
+    height: 48px;
 
-    background: var(--array-item-bg);
-    border: 1px solid var(--array-item-border);
-    color: var(--array-item-text);
-    font-weight: 700;
-    text-align: center;
+    background: #f8fafc;
+    /* plain array look */
+    border: 2px solid #475569;
+    /* darker border */
+    color: #111827;
 
-    border-radius: 14px;
-    box-shadow: 0 5px 15px rgba(34, 197, 94, 0.4);
+    font-weight: 600;
+    font-family: monospace;
+    /* IMPORTANT: real array feel */
+    font-size: 1rem;
 
-    transform: translateY(12px) scale(0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 6px;
+    /* NOT too rounded */
+    box-shadow: none;
+    /* remove fancy shadows */
+
+    transform: translateY(6px);
     opacity: 0;
-    animation: array-enter 0.22s ease forwards;
+    animation: array-enter 0.18s ease forwards;
 }
 
 .array-item.highlight {
-    background: radial-gradient(circle at 0 0, #fed7aa, #fb923c) !important;
-    border-color: #fb923c !important;
-    color: #7c2d12 !important;
+    background: #fde68a !important;
+    border-color: #f59e0b !important;
+    color: #78350f !important;
 }
 
 /* ENTER ANIMATION */
@@ -80,16 +91,67 @@
 
 .array-grid {
     display: grid;
-    padding: 14px;
-    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
-    gap: 10px;
+    padding: 12px;
 
-    border-radius: 16px;
+    grid-template-columns: repeat(3, 64px);
+    gap: 4px;
+
+    justify-content: center;
+    /* CENTER horizontally */
+    align-content: center;
+    /* CENTER vertically */
+
+    margin: 0 auto;
+    /* CENTER inside container */
+
+    border-radius: 12px;
     border: 2px dashed rgba(148, 163, 184, 0.7);
     background: var(--array-2d-bg);
 }
-
 .array-grid .array-item {
     min-width: unset;
     padding: 12px 10px;
+}
+
+.array-grid .array-item {
+    width: 64px;
+    height: 64px;
+
+    padding: 0;
+    font-size: 1rem;
+    font-weight: 700;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ARRAY CELL (ITEM + INDEX) */
+.array-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+/* INDEX LABEL */
+.array-index {
+    font-size: 0.8rem;
+    color: #475569;
+    font-family: monospace;
+}
+
+/* SHIFT ANIMATION */
+.shift-right {
+    animation: shiftRight 0.25s ease;
+}
+
+@keyframes shiftRight {
+    from {
+        transform: translateX(-16px);
+    }
+
+    to {
+        transform: translateX(0);
+    }
 }
