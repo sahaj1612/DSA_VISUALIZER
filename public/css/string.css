@@ -33,28 +33,38 @@
 
     border-radius: 16px;
     border: 2px dashed rgba(148, 163, 184, 0.7);
-    background: radial-gradient(circle at top, #eef2ff, #f9fafb);
+background: radial-gradient(circle at top, #eef2ff, #f9fafb);
     transition: 0.25s ease;
 }
 
 /* 1D ITEMS ---------------------------------------------------------- */
 
 .array-item {
-    padding: 10px 14px;
-    min-width: 55px;
+    width: 64px;
+    height: 48px;
 
-    background: var(--string-item-bg);
-    border: 1px solid var(--string-item-border);
-    color: var(--string-item-text);
-    font-weight: 700;
-    text-align: center;
+    background: #fff1f2;
+    /* light red background */
+    border: 2px solid #991b1b;
+    /* dark red border */
+    color: #7f1d1d;
 
-    border-radius: 14px;
-    box-shadow: 0 5px 15px rgba(248, 113, 113, 0.4);
+    font-weight: 600;
+    font-family: monospace;
+    /* same as array */
+    font-size: 1rem;
 
-    transform: translateY(12px) scale(0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 6px;
+    /* same sharp edges */
+    box-shadow: none;
+
+    transform: translateY(6px);
     opacity: 0;
-    animation: array-enter 0.22s ease forwards;
+    animation: array-enter 0.18s ease forwards;
 }
 
 .array-item.highlight {
@@ -80,16 +90,46 @@
 
 .array-grid {
     display: grid;
-    padding: 14px;
-    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
-    gap: 10px;
+    padding: 12px;
 
-    border-radius: 16px;
+    grid-template-columns: repeat(3, 64px);
+    gap: 4px;
+    /* SAME as array.css */
+
+    justify-content: center;
+    align-content: center;
+    margin: 0 auto;
+
+    border-radius: 12px;
     border: 2px dashed rgba(148, 163, 184, 0.7);
-    background: var(--string-2d-bg);
+background: radial-gradient(circle at top, #eef2ff, #f9fafb);
+}
+
+.array-grid .array-item {
+    width: 64px;
+    height: 64px;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .array-grid .array-item {
     min-width: unset;
     padding: 12px 10px;
+}
+/* STRING CELL (ITEM + INDEX) */
+.array-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+/* INDEX LABEL */
+.array-index {
+    font-size: 0.8rem;
+    color: #7f1d1d;
+    font-family: monospace;
 }

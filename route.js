@@ -11,27 +11,27 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 
-app.post("/array", (req, res) => {
-  res.render("array")
+app.get("/array", (req, res) => {
+  res.render("array");
 });
 
-app.post("/string", (req, res) => {
-  res.render("string")
+app.get("/string", (req, res) => {
+  res.render("string");
 });
 
-app.post("/stack", (req, res) => {
+app.get("/stack", (req, res) => {
   res.render("stack");
 });
 
-app.post("/queue", (req, res) => {
+app.get("/queue", (req, res) => {
   res.render("queue");
 });
 
-app.post("/linked_list", (req, res) => {
+app.get("/linked_list", (req, res) => {
   res.render("linkedlist");
 });
 
-app.post("/tree", (req, res) => {
+app.get("/tree", (req, res) => {
   res.render("tree");
 });
 

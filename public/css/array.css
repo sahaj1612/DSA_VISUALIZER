@@ -40,18 +40,17 @@
 /* 1D ITEMS ---------------------------------------------------------- */
 
 .array-item {
+    background: #fff1f2;
+    /* light brown/red */
+    border: 2px solid #991b1b;
+    /* dark brown border */
+    color: #7f1d1d;
     width: 64px;
     height: 48px;
-
-    background: #f8fafc;
-    /* plain array look */
-    border: 2px solid #475569;
-    /* darker border */
-    color: #111827;
+    /* brown text */
 
     font-weight: 600;
     font-family: monospace;
-    /* IMPORTANT: real array feel */
     font-size: 1rem;
 
     display: flex;
@@ -59,20 +58,14 @@
     justify-content: center;
 
     border-radius: 6px;
-    /* NOT too rounded */
     box-shadow: none;
-    /* remove fancy shadows */
 
     transform: translateY(6px);
     opacity: 0;
     animation: array-enter 0.18s ease forwards;
 }
 
-.array-item.highlight {
-    background: #fde68a !important;
-    border-color: #f59e0b !important;
-    color: #78350f !important;
-}
+
 
 /* ENTER ANIMATION */
 @keyframes array-enter {
@@ -137,7 +130,8 @@
 /* INDEX LABEL */
 .array-index {
     font-size: 0.8rem;
-    color: #475569;
+    color: #7f1d1d;
+    /* same brown as string */
     font-family: monospace;
 }
 
