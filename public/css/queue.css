@@ -271,7 +271,7 @@ body {
     border-radius: 16px;
     border: 2px dashed rgba(148, 163, 184, 0.7);
     background: radial-gradient(circle at top, #eff6ff, #f9fafb);
-    min-height: 150px;
+    min-height: 130px;
     padding: 10px;
     position: relative;
     overflow: hidden;

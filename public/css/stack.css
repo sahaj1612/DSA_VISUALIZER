@@ -269,7 +269,7 @@ body {
     border-radius: 16px;
     border: 2px dashed rgba(148, 163, 184, 0.7);
     background: radial-gradient(circle at top, #eef2ff, #f9fafb);
-    min-height: 220px;
+    min-height: 180px;
     padding: 12px;
     display: flex;
     flex-direction: column-reverse;

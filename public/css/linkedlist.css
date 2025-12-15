@@ -54,6 +54,13 @@ body {
   font-size: 2rem;
   margin-bottom: 4px;
 }
+
+.app-footer {
+    font-size: 0.85rem;
+    color: var(--text-soft);
+    text-align: center;
+}
+
 .subtitle {
   font-size: 0.95rem;
   color: var(--text-soft);
@@ -196,7 +203,7 @@ body {
 }
 
 .ll-visual {
-  min-height: 180px;
+  min-height: 110px;
   padding: 14px;
   display: flex;
   gap: 18px;
