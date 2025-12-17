@@ -316,33 +316,101 @@ renderBst();
 /* ---------- 3. AVL ---------- */
 let avlRoot = null;
 let _avlUid = 1;
-function ensureAvlUid(node){ if(!node) return; if(!node._uid) node._uid = _avlUid++; }
-function height(n){ return n ? n.h : 0; }
-function update(n){ n.h = 1 + Math.max(height(n.left), height(n.right)); }
-function balanceFactor(n){ return n ? height(n.left) - height(n.right) : 0; }
-function rotateRight(y){ const x=y.left; const T2 = x.right; x.right = y; y.left = T2; update(y); update(x); return x; }
-function rotateLeft(x){ const y=x.right; const T2 = y.left; y.left = x; x.right = T2; update(x); update(y); return y; }
-function avlInsert(node, key){ if(!node) return { val:key, left:null, right:null, h:1, _uid: _avlUid++ }; if(key < node.val) node.left = avlInsert(node.left, key); else node.right = avlInsert(node.right, key); update(node); const bf = balanceFactor(node); if(bf > 1 && key < node.left.val) return rotateRight(node); if(bf < -1 && key > node.right.val) return rotateLeft(node); if(bf > 1 && key > node.left.val){ node.left = rotateLeft(node.left); return rotateRight(node); } if(bf < -1 && key < node.right.val){ node.right = rotateRight(node.right); return rotateLeft(node); } return node; }
-function avlMinValueNode(n){ let cur=n; while(cur.left) cur = cur.left; return cur; }
-function avlDelete(node, key){
-  if(!node) return node;
-  if(key < node.val) node.left = avlDelete(node.left, key);
-  else if(key > node.val) node.right = avlDelete(node.right, key);
+
+function ensureAvlUid(node) { 
+  if (!node) return; 
+  if (!node._uid) node._uid = _avlUid++; 
+}
+
+function height(n) { return n ? n.h : 0; }
+
+function update(n) { 
+  if (n) n.h = 1 + Math.max(height(n.left), height(n.right)); 
+}
+
+function balanceFactor(n) { 
+  return n ? height(n.left) - height(n.right) : 0; 
+}
+
+function rotateRight(y) { 
+  const x = y.left; 
+  const T2 = x.right; 
+  x.right = y; 
+  y.left = T2; 
+  update(y); 
+  update(x); 
+  return x; 
+}
+
+function rotateLeft(x) { 
+  const y = x.right; 
+  const T2 = y.left; 
+  y.left = x; 
+  x.right = T2; 
+  update(x); 
+  update(y); 
+  return y; 
+}
+
+function avlInsert(node, key) { 
+  if (!node) return { val: key, left: null, right: null, h: 1, _uid: _avlUid++ }; 
+  if (key < node.val) node.left = avlInsert(node.left, key); 
+  else if (key > node.val) node.right = avlInsert(node.right, key); 
+  else return node; // Duplicate keys not allowed
+
+  update(node); 
+  const bf = balanceFactor(node); 
+  
+  // Left Left Case
+  if (bf > 1 && key < node.left.val) return rotateRight(node); 
+  // Right Right Case
+  if (bf < -1 && key > node.right.val) return rotateLeft(node); 
+  // Left Right Case
+  if (bf > 1 && key > node.left.val) { 
+    node.left = rotateLeft(node.left); 
+    return rotateRight(node); 
+  } 
+  // Right Left Case
+  if (bf < -1 && key < node.right.val) { 
+    node.right = rotateRight(node.right); 
+    return rotateLeft(node); 
+  } 
+  return node; 
+}
+
+function avlMinValueNode(n) { 
+  let cur = n; 
+  while (cur.left) cur = cur.left; 
+  return cur; 
+}
+
+function avlDelete(node, key) {
+  if (!node) return node;
+  if (key < node.val) node.left = avlDelete(node.left, key);
+  else if (key > node.val) node.right = avlDelete(node.right, key);
   else {
-    if(!node.left || !node.right) node = node.left ? node.left : node.right;
-    else {
+    if (!node.left || !node.right) {
+      node = node.left ? node.left : node.right;
+    } else {
       const temp = avlMinValueNode(node.right);
       node.val = temp.val;
       node.right = avlDelete(node.right, temp.val);
     }
   }
-  if(!node) return node;
+  if (!node) return node;
+
   update(node);
   const bf = balanceFactor(node);
-  if(bf > 1 && balanceFactor(node.left) >= 0) return rotateRight(node);
-  if(bf > 1 && balanceFactor(node.left) < 0){ node.left = rotateLeft(node.left); return rotateRight(node); }
-  if(bf < -1 && balanceFactor(node.right) <= 0) return rotateLeft(node);
-  if(bf < -1 && balanceFactor(node.right) > 0){ node.right = rotateRight(node.right); return rotateLeft(node); }
+  if (bf > 1 && balanceFactor(node.left) >= 0) return rotateRight(node);
+  if (bf > 1 && balanceFactor(node.left) < 0) { 
+    node.left = rotateLeft(node.left); 
+    return rotateRight(node); 
+  }
+  if (bf < -1 && balanceFactor(node.right) <= 0) return rotateLeft(node);
+  if (bf < -1 && balanceFactor(node.right) > 0) { 
+    node.right = rotateRight(node.right); 
+    return rotateLeft(node); 
+  }
   return node;
 }
 
@@ -353,27 +421,39 @@ const avlDeleteBtn = document.getElementById("avl-delete");
 const avlTraverseBtn = document.getElementById("avl-traverse");
 const avlResetBtn = document.getElementById("avl-reset");
 const avlStatus = document.getElementById("avl-status");
-function setAvlStatus(m){ avlStatus.textContent = m; }
-function inorderAvl(n, out=[]){ if(!n) return out; inorderAvl(n.left,out); out.push(n.val); inorderAvl(n.right,out); return out; }
 
-function layoutLevels(root){
-  if(!root) return [];
-  const rows=[]; const q=[{n:root, depth:0}];
-  while(q.length){ const {n,depth}=q.shift(); rows[depth]=rows[depth]||[]; rows[depth].push(n); q.push({n:n.left, depth:depth+1}); q.push({n:n.right, depth:depth+1}); }
-  return rows;
-}
+function setAvlStatus(m) { avlStatus.textContent = m; }
 
-function renderAvl(){
-  avlTreeEl.innerHTML='';
-  if(!avlRoot){ avlTreeEl.innerHTML = "<div style='color:var(--text-soft)'>Tree is empty.</div>"; return; }
-  const rows = layoutLevels(avlRoot);
+function renderAvl() {
+  avlTreeEl.innerHTML = '';
+  if (!avlRoot) { 
+    avlTreeEl.innerHTML = "<div style='color:var(--text-soft); padding: 20px;'>Tree is empty.</div>"; 
+    return; 
+  }
+
+  // Use a proper level-order traversal for layout
+  const rows = []; 
+  const q = [{ n: avlRoot, depth: 0 }];
+  while (q.length) { 
+    const { n, depth } = q.shift(); 
+    if (!n) continue;
+    rows[depth] = rows[depth] || []; 
+    rows[depth].push(n); 
+    q.push({ n: n.left, depth: depth + 1 }); 
+    q.push({ n: n.right, depth: depth + 1 }); 
+  }
+
   const nodeMap = new Map();
-  rows.forEach(row=>{
-    const rowEl = document.createElement('div'); rowEl.className = 'tree-row';
-    row.forEach(node=>{
+  rows.forEach(row => {
+    const rowEl = document.createElement('div'); 
+    rowEl.className = 'tree-row';
+    row.forEach(node => {
       ensureAvlUid(node);
-      const nEl = document.createElement('div'); nEl.className = 'node';
-      nEl.textContent = node.val + (node.h ? ` (h${node.h})` : '');
+      const nEl = document.createElement('div'); 
+      nEl.className = 'node';
+      nEl.textContent = node.val;
+      // Added tooltip for height
+      nEl.title = `Height: ${node.h}`;
       nEl.dataset.uid = node._uid;
       rowEl.appendChild(nEl);
       nodeMap.set(node._uid, nEl);
@@ -382,36 +462,60 @@ function renderAvl(){
   });
 
   const connections = [];
-  (function collect(node){
-    if(!node) return;
-    if(node.left && nodeMap.get(node._uid) && nodeMap.get(node.left._uid)) connections.push({ parentEl: nodeMap.get(node._uid), childEl: nodeMap.get(node.left._uid) });
-    if(node.right && nodeMap.get(node._uid) && nodeMap.get(node.right._uid)) connections.push({ parentEl: nodeMap.get(node._uid), childEl: nodeMap.get(node.right._uid) });
-    collect(node.left); collect(node.right);
-  })(avlRoot);
+  const collectConnections = (node) => {
+    if (!node) return;
+    if (node.left && nodeMap.has(node._uid) && nodeMap.has(node.left._uid)) {
+      connections.push({ parentEl: nodeMap.get(node._uid), childEl: nodeMap.get(node.left._uid) });
+    }
+    if (node.right && nodeMap.has(node._uid) && nodeMap.has(node.right._uid)) {
+      connections.push({ parentEl: nodeMap.get(node._uid), childEl: nodeMap.get(node.right._uid) });
+    }
+    collectConnections(node.left);
+    collectConnections(node.right);
+  };
+  collectConnections(avlRoot);
 
   const area = avlTreeEl;
   area._redrawConnectors = () => drawConnectionsForArea(area, connections);
-  setTimeout(()=> area._redrawConnectors(), 10);
+  
+  // Force a small delay to ensure DOM is painted before drawing lines
+  requestAnimationFrame(() => {
+    setTimeout(() => area._redrawConnectors(), 50);
+  });
 }
 
-avlInsertBtn.addEventListener('click', ()=>{
-  const v = Number(avlValueEl.value);
-  if(!avlValueEl.value){ setAvlStatus('Enter value to insert.'); avlValueEl.focus(); return; }
+avlInsertBtn.addEventListener('click', () => {
+  const v = parseInt(avlValueEl.value);
+  if (isNaN(v)) { setAvlStatus('Enter a valid number.'); avlValueEl.focus(); return; }
   avlRoot = avlInsert(avlRoot, v);
-  setAvlStatus(`Inserted ${v} (tree rebalanced if needed).`);
+  setAvlStatus(`Inserted ${v}.`);
   avlValueEl.value = '';
   renderAvl();
 });
-avlDeleteBtn.addEventListener('click', ()=>{
-  const v = Number(avlValueEl.value);
-  if(!avlValueEl.value){ setAvlStatus('Enter value to delete.'); avlValueEl.focus(); return; }
+
+avlDeleteBtn.addEventListener('click', () => {
+  const v = parseInt(avlValueEl.value);
+  if (isNaN(v)) { setAvlStatus('Enter value to delete.'); avlValueEl.focus(); return; }
   avlRoot = avlDelete(avlRoot, v);
-  setAvlStatus(`Deleted ${v} (tree rebalanced if needed).`);
-  avlValueEl.value='';
+  setAvlStatus(`Deleted ${v}.`);
+  avlValueEl.value = '';
   renderAvl();
 });
-avlTraverseBtn.addEventListener('click', ()=>{ setAvlStatus('In-order: ' + inorderAvl(avlRoot).join(', ')); });
-avlResetBtn.addEventListener('click', ()=>{ avlRoot = null; setAvlStatus('Tree reset.'); renderAvl(); });
+
+avlTraverseBtn.addEventListener('click', () => { 
+    const res = [];
+    const inorder = (n) => { if(n){ inorder(n.left); res.push(n.val); inorder(n.right); } };
+    inorder(avlRoot);
+    setAvlStatus('In-order: ' + res.join(', ')); 
+});
+
+avlResetBtn.addEventListener('click', () => { 
+    avlRoot = null; 
+    setAvlStatus('Tree reset.'); 
+    renderAvl(); 
+});
+
+// Initialize rendering
 renderAvl();
 
 
