@@ -35,29 +35,27 @@ function clearOverlay(svg) {
 }
 
 function createConnector(svg, x1, y1, x2, y2) {
-  // draw a smooth cubic bezier from (x1,y1) to (x2,y2)
-  // control points placed to curve nicely
-  const dx = Math.abs(x2 - x1);
-  const curvature = Math.max(20, Math.min(80, dx * 0.35));
-  const cx1 = x1;
-  const cy1 = y1 + curvature;
-  const cx2 = x2;
-  const cy2 = y2 - curvature;
-
   const g = document.createElementNS(svg.namespaceURI, 'g');
   g.setAttribute('class', 'connector-group');
 
-  // optional subtle shadow under connector
-  const shadow = document.createElementNS(svg.namespaceURI, 'path');
+  // shadow (optional but keeps your UI depth)
+  const shadow = document.createElementNS(svg.namespaceURI, 'line');
   shadow.setAttribute('class', 'connector-shadow');
-  shadow.setAttribute('d', `M ${x1} ${y1} C ${cx1} ${cy1}, ${cx2} ${cy2}, ${x2} ${y2}`);
+  shadow.setAttribute('x1', x1);
+  shadow.setAttribute('y1', y1);
+  shadow.setAttribute('x2', x2);
+  shadow.setAttribute('y2', y2);
   g.appendChild(shadow);
 
-  const path = document.createElementNS(svg.namespaceURI, 'path');
-  path.setAttribute('class', 'connector');
-  path.setAttribute('d', `M ${x1} ${y1} C ${cx1} ${cy1}, ${cx2} ${cy2}, ${x2} ${y2}`);
-  path.setAttribute('marker-end', 'url(#arrowhead)');
-  g.appendChild(path);
+  // main diagonal connector
+  const line = document.createElementNS(svg.namespaceURI, 'line');
+  line.setAttribute('class', 'connector');
+  line.setAttribute('x1', x1);
+  line.setAttribute('y1', y1);
+  line.setAttribute('x2', x2);
+  line.setAttribute('y2', y2);
+  line.setAttribute('marker-end', 'url(#arrowhead)');
+  g.appendChild(line);
 
   svg.appendChild(g);
   return g;
